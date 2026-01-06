@@ -47,4 +47,18 @@ details{margin-bottom:1rem;}
 
 footer{text-align:center;padding:2rem;font-size:.9rem;opacity:.6}
 #theme-toggle{cursor:pointer;}
+/* Luger.gg inspired palette */
+:root{
+  --bg:#0a0a0a;
+  --fg:#e2e2e2;
+  --card:#111111;
+  --accent:#00f2ff;
+  --accent2:#ff00c1;
+  --radius:8px;
+}
+body.dark{ /* same colours, just flipped */
+  --bg:#ffffff;
+  --fg:#111111;
+  --card:#f5f5f5;
+}
 
