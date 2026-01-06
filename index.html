@@ -58,22 +58,64 @@
     <h2>🎲 Blind Boxes</h2>
     <p>Spin for godlys, chromas, ancients, and more. Every box guarantees an item worth at least the price you pay!</p>
     <div class="box-grid">
-      <div class="box">
-        <h3>Mystery Box $1</h3>
-        <span class="tag">Common – Legendary</span>
-        <button class="btn secondary">Open for $1</button>
-      </div>
-      <div class="box">
-        <h3>Godly Chance $3</h3>
-        <span class="tag">Rare – Godly</span>
-        <button class="btn secondary">Open for $3</button>
-      </div>
-      <div class="box">
-        <h3>Chroma Rush $5</h3>
-        <span class="tag">Epic – Chroma</span>
-        <button class="btn secondary">Open for $5</button>
-      </div>
-    </div>
+      <div class="box-grid">
+  <!-- Mystery Box $1 -->
+  <div class="box">
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="b1"><feDropShadow dx="3" dy="4" stdDeviation="3" flood="var(--accent2)" flood-opacity=".4"/></filter></defs>
+      <g filter="url(#b1)">
+        <path d="M60 15 L100 35 L100 85 L60 105 L20 85 L20 35 Z" fill="var(--accent)"/>
+        <path d="M20 35 L60 55 L100 35 L60 15 Z" fill="rgba(255,255,255,.25)"/>
+        <path d="M60 55 L60 105 L20 85 Z" fill="rgba(0,0,0,.15)"/>
+        <path d="M60 55 L100 35 L100 85 L60 105 Z" fill="rgba(0,0,0,.25)"/>
+      </g>
+      <g stroke="rgba(255,255,255,.4)" stroke-width=".5"><line x1="40" y1="25" x2="80" y2="45"/><line x1="80" y1="25" x2="40" y2="45"/></g>
+    </svg>
+    <h3>Mystery Box $1</h3>
+    <span class="tag">Common – Legendary</span>
+    <button class="btn secondary">Open for $1</button>
+  </div>
+
+  <!-- Godly Chance $3 -->
+  <div class="box">
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="b2"><feDropShadow dx="3" dy="4" stdDeviation="3" flood="var(--accent)" flood-opacity=".4"/></filter></defs>
+      <g filter="url(#b2)">
+        <path d="M60 15 L100 35 L100 85 L60 105 L20 85 L20 35 Z" fill="var(--accent2)"/>
+        <path d="M20 35 L60 55 L100 35 L60 15 Z" fill="rgba(255,255,255,.25)"/>
+        <path d="M60 55 L60 105 L20 85 Z" fill="rgba(0,0,0,.15)"/>
+        <path d="M60 55 L100 35 L100 85 L60 105 Z" fill="rgba(0,0,0,.25)"/>
+      </g>
+      <g stroke="rgba(255,255,255,.4)" stroke-width=".5"><line x1="40" y1="25" x2="80" y2="45"/><line x1="80" y1="25" x2="40" y2="45"/></g>
+    </svg>
+    <h3>Godly Chance $3</h3>
+    <span class="tag">Rare – Godly</span>
+    <button class="btn secondary">Open for $3</button>
+  </div>
+
+  <!-- Chroma Rush $5 -->
+  <div class="box">
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="b3"><feDropShadow dx="3" dy="4" stdDeviation="4" flood="var(--accent2)" flood-opacity=".6"/></filter></defs>
+      <g filter="url(#b3)">
+        <path d="M60 15 L100 35 L100 85 L60 105 L20 85 L20 35 Z" fill="url(#chroma)"/>
+        <path d="M20 35 L60 55 L100 35 L60 15 Z" fill="rgba(255,255,255,.35)"/>
+        <path d="M60 55 L60 105 L20 85 Z" fill="rgba(0,0,0,.15)"/>
+        <path d="M60 55 L100 35 L100 85 L60 105 Z" fill="rgba(0,0,0,.25)"/>
+      </g>
+      <defs>
+        <linearGradient id="chroma" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="var(--accent)"/>
+          <stop offset="100%" stop-color="var(--accent2)"/>
+        </linearGradient>
+      </defs>
+      <g stroke="rgba(255,255,255,.4)" stroke-width=".5"><line x1="40" y1="25" x2="80" y2="45"/><line x1="80" y1="25" x2="40" y2="45"/></g>
+    </svg>
+    <h3>Chroma Rush $5</h3>
+    <span class="tag">Epic – Chroma</span>
+    <button class="btn secondary">Open for $5</button>
+  </div>
+</div>
   </section>
 
   <section id="pricing" class="pricing">
@@ -127,6 +169,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
