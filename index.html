@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Silvar.gg – Coming Soon</title>
+  <title>Silvar.GG – Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -14,28 +14,55 @@
   </style>
 </head>
 <body>
-  <div class="gate">
-    <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-      <path d="M30 5 L50 15 L50 45 L30 55 L10 45 L10 15 Z" fill="var(--accent)" stroke="var(--accent2)" stroke-width="2"/>
-    </svg>
-    <h1>Silvar.gg</h1>
-    <p>We're polishing the crates. Check back soon!</p>
-    <input id="pass" type="password" placeholder="Developer pass">
-    <button class="btn secondary" onclick="unlock()">Enter</button>
-    <div id="msg" class="error"></div>
-  </div>
+<div class="gate">
+  <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 5 L50 15 L50 45 L30 55 L10 45 L10 15 Z" fill="var(--accent)" stroke="var(--accent2)" stroke-width="2"/>
+  </svg>
 
-  <script>
-    function unlock(){
-      if(document.getElementById('pass').value === 'Sapphire'){
-        localStorage.setItem('silvar_dev','1');
-        window.location='store.html';
-      }else{
-        document.getElementById('msg').textContent='Wrong password.';
-      }
+  <h1>Silvar.gg</h1>
+  <p>we're polishing the crates. check back soon!</p>
+
+  <!-- USER / DEV LOGIN -->
+  <h3>developer access</h3>
+  <input id="pass-dev" type="password" placeholder="developer pass">
+  <button class="btn secondary" onclick="unlockDev()">enter</button>
+
+  <!-- ADMIN LOGIN -->
+  <h3>admin access</h3>
+  <input id="pass-admin" type="password" placeholder="admin pass">
+  <button class="btn secondary" onclick="unlockAdmin()">enter</button>
+
+  <div id="msg" class="error"></div>
+</div>
+
+<script>
+  function setMsg(text){
+    document.getElementById('msg').textContent = text;
+  }
+
+  function unlockDev(){
+    const val = document.getElementById('pass-dev').value;
+    if(val === 'Sapphire'){
+      localStorage.setItem('silvar_dev','1');
+      window.location = 'store.html';
+    } else {
+      setMsg('wrong developer password 😤');
     }
-  </script>
+  }
+
+  function unlockAdmin(){
+    const val = document.getElementById('pass-admin').value;
+    if(val === 'SuperAdmin123'){   // change this to your real admin pass
+      localStorage.setItem('silvar_admin','1');
+      window.location = 'admin.html';
+    } else {
+      setMsg('admin credentials invalid 🫣');
+    }
+  }
+</script>
+
 </body>
 
 </html>
+
 
