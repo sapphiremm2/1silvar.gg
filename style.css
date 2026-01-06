@@ -68,7 +68,9 @@ body.dark{ /* same colours, just flipped */
 }
 
 /* ----- fancy details ----- */
-body{ background:var(--bg) linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%) fixed; }
+body{
+  background:#0a0a0a url('background.png') center/cover no-repeat fixed;
+}
 .hero{ position:relative; overflow:hidden; }
 .hero::before{          /* sparkle animation */
   content:""; position:absolute; inset:0;
@@ -95,5 +97,6 @@ body{ background:var(--bg) linear-gradient(135deg, var(--accent2) 0%, var(--acce
           text-fill-color:transparent;
   display:inline-block;        /* keeps bg inside letters */
 }
+
 
 
