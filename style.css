@@ -67,4 +67,25 @@ body.dark{ /* same colours, just flipped */
   --card:#f5f5f5;
 }
 
+/* ----- fancy details ----- */
+body{ background:var(--bg) linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%) fixed; }
+.hero{ position:relative; overflow:hidden; }
+.hero::before{          /* sparkle animation */
+  content:""; position:absolute; inset:0;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1.2" fill="%23fff" opacity=".4"><animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="70" r="1.5" fill="%23fff" opacity=".3"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/></circle></svg>') repeat;
+  animation:spark 12s linear infinite;
+}
+@keyframes spark{ to{ transform:translateY(-100vh); } }
+
+.card,.box{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform .2s,box-shadow .2s;
+}
+.card:hover,.box:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 24px rgba(0,0,0,.3), 0 0 16px var(--accent);
+}
+
 
