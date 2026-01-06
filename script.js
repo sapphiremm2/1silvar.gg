@@ -10,3 +10,13 @@ toggle.addEventListener('click', () => {
 // dynamic year
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// copy coupon
+document.getElementById('copy-btn').addEventListener('click', () => {
+  navigator.clipboard.writeText('SILVAR').then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+});
+
