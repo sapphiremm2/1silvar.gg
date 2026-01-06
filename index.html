@@ -2,74 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Silvar.GG – Coming Soon</title>
+  <title>silvar.gg – login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
   <style>
-    body{display:flex;align-items:center;justify-content:center;height:100vh;background:#0a0a0a;color:#fff;font-family:Inter,sans-serif;text-align:center;}
-    .gate{max-width:400px;padding:2rem;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.05);backdrop-filter:blur(8px);}
-    input[type="password"]{width:100%;padding:.75rem;margin:1rem 0;border:none;border-radius:8px;background:#111;color:#fff;}
-    .btn{width:100%;}
-    .error{color:var(--accent2);margin-top:.5rem;}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      background:#050505;
+      color:#fff;
+      font-family:Inter, system-ui, sans-serif;
+    }
+
+    .gate{
+      max-width:420px;
+      width:100%;
+      padding:2rem;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+      text-align:center;
+    }
+
+    svg{margin-bottom:.5rem}
+
+    h1{margin:.25rem 0 .35rem 0}
+    p{margin:0 0 .75rem 0; color:#ccc}
+
+    input[type="text"],
+    input[type="password"]{
+      width:100%;
+      padding:.75rem;
+      margin:.6rem 0;
+      border:none;
+      border-radius:10px;
+      background:#0f0f0f;
+      color:#fff;
+      outline:none;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    input::placeholder{color:#777}
+
+    input:focus{
+      box-shadow:inset 0 0 0 1px #ff00c8,
+                 0 0 12px #ff00c822;
+    }
+
+    button.btn{
+      width:100%;
+      padding:.85rem;
+      margin-top:.6rem;
+      border:none;
+      border-radius:12px;
+      background:#ff00c8;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 0 24px #ff00c855;
+      transition:transform .12s, box-shadow .12s;
+    }
+
+    button.btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 32px #ff00c8aa;
+    }
+
+    button.btn:active{
+      transform:translateY(0);
+      box-shadow:0 0 18px #ff00c888;
+    }
+
+    .error{
+      color:#ff6ecf;
+      margin-top:.5rem;
+      min-height:1.2em;
+      font-size:.9rem;
+    }
+
+    @keyframes shake{
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-6px)}
+      60%{transform:translateX(6px)}
+    }
   </style>
 </head>
+
 <body>
-<div class="gate">
-  <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-    <path d="M30 5 L50 15 L50 45 L30 55 L10 45 L10 15 Z" fill="var(--accent)" stroke="var(--accent2)" stroke-width="2"/>
-  </svg>
+  <div class="gate" id="gate">
+    <svg width="60" height="60" viewBox="0 0 60 60">
+      <path d="M30 5 L50 15 L50 45 L30 55 L10 45 L10 15 Z"
+            fill="#00f6ff" stroke="#ff00c8" stroke-width="2"/>
+    </svg>
 
-  <h1>silvar.gg</h1>
-  <p>login to enter</p>
+    <h1>silvar.gg</h1>
+    <p>login to enter</p>
 
-  <input id="user" type="text" placeholder="username">
-  <input id="pass" type="password" placeholder="password">
-  <button class="btn secondary" onclick="login()">enter</button>
+    <input id="user" type="text" placeholder="username">
+    <input id="pass" type="password" placeholder="password">
+    <button class="btn" onclick="login()">enter</button>
 
-  <div id="msg" class="error"></div>
+    <div id="msg" class="error"></div>
 
-  <audio id="unlock-sound" preload="auto"
-    src="unlock.mp3"></audio>
-</div>
+    <!-- your latch click sound -->
+    <audio id="unlock-sound" src="unlock-sound.mp3" preload="auto"></audio>
+  </div>
 
-<script>
-  const sound = document.getElementById("unlock-sound");
-  const msg = document.getElementById("msg");
+  <script>
+    const msg  = document.getElementById("msg");
+    const gate = document.getElementById("gate");
+    const sound = document.getElementById("unlock-sound");
 
-  // fake accounts (you can edit these)
-  const accounts = {
-    "saph": { pass: "Sapphire", role: "user", redirect: "store.html" },
-    "admin": { pass: "SuperAdmin123", role: "admin", redirect: "admin.html" }
-  };
+    // fake accounts — change these however you want
+    const accounts = {
+      "saph":  { pass: "Sapphire", redirect: "store.html" },
+      "admin": { pass: "SuperAdmin123", redirect: "admin.html" }
+    };
 
-  function playUnlock(){
-    sound.currentTime = 0;
-    sound.play().catch(()=>{});
-  }
-
-  function login(){
-    const u = document.getElementById("user").value.trim();
-    const p = document.getElementById("pass").value;
-
-    if(!accounts[u]){
-      msg.textContent = "no account found 😵‍💫";
-      return;
+    function playUnlock(){
+      sound.currentTime = 0;
+      sound.play().catch(()=>{});
     }
 
-    if(p !== accounts[u].pass){
-      msg.textContent = "wrong password 🤧";
-      return;
+    function shake(){
+      gate.style.animation = "shake .35s";
+      setTimeout(()=> gate.style.animation = "", 380);
     }
 
-    playUnlock();
-    localStorage.setItem("silvar_user", u);
-    setTimeout(()=> window.location = accounts[u].redirect, 350);
-  }
-</script>
+    function login(){
+      const u = document.getElementById("user").value.trim();
+      const p = document.getElementById("pass").value;
 
+      if(!accounts[u]){
+        msg.textContent = "no account found 😵‍💫";
+        shake();
+        return;
+      }
+
+      if(p !== accounts[u].pass){
+        msg.textContent = "wrong password 🤧";
+        shake();
+        return;
+      }
+
+      msg.textContent = "";
+      playUnlock();
+      localStorage.setItem("silvar_user", u);
+
+      setTimeout(()=> window.location = accounts[u].redirect, 350);
+    }
+  </script>
 </body>
-
 </html>
+
 
 
 
